@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <alpha
+        android:fromAlpha="0.0" android:toAlpha="1.0"
+        android:duration="1000" />
+    <!--("50" for 50% relative to the parent, or "50%" for 50% relative to itself)-->
+    <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+        android:toDegrees="360"
+        android:pivotX="0%" android:pivotY="50%"
+        android:duration="1000"/>
+</set>
