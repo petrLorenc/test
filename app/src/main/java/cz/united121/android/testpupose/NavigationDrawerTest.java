@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +21,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class NavigationDrawerTest extends ActionBarActivity  {
+public class NavigationDrawerTest extends Activity  {
+
+    private static String TAG = NavigationDrawerTest.class.getName();
 
     private DrawerLayout mDrawerLayout;
     private ListView mListView;
@@ -28,11 +33,15 @@ public class NavigationDrawerTest extends ActionBarActivity  {
     private BlankFragment blankFragment;
     private BlankFragment2 blankFragment2;
 
-    private android.support.v4.app.Fragment currentFragment;
+    private Fragment currentFragment;
+
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"onCreate");
+
         setContentView(R.layout.activity_navigation_drawer_test);
 
         mListView = (ListView) findViewById(R.id.navList);
@@ -40,16 +49,41 @@ public class NavigationDrawerTest extends ActionBarActivity  {
 
         populateListView(new String[]{"Petr", "Pavel", "Sasa"});
 
-        blankFragment = (BlankFragment) getSupportFragmentManager().findFragmentById(R.id.fragment1);
-        blankFragment2 = (BlankFragment2) getSupportFragmentManager().findFragmentById(R.id.fragment2);
+        blankFragment = (BlankFragment) getFragmentManager().findFragmentById(R.id.fragment1);
+        blankFragment2 = (BlankFragment2) getFragmentManager().findFragmentById(R.id.fragment2);
 
-        getSupportFragmentManager().beginTransaction()
+        getFragmentManager().beginTransaction()
                 .hide(blankFragment2)
                 .commit();
         currentFragment = blankFragment;
+
+        //setActionBar();
     }
 
-    private void switchFragmet(android.support.v4.app.Fragment fragmentSwitchTo, String name){
+    private void setActionBar(){
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(
+                NavigationDrawerTest.this,
+                mDrawerLayout,
+                R.string.action_bar_open,
+                R.string.action_bar_close){
+
+                /** Called when a drawer has settled in a completely closed state. */
+                public void onDrawerClosed(View view) {
+                    super.onDrawerClosed(view);
+                }
+
+                /** Called when a drawer has settled in a completely open state. */
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+
+                }
+        };
+
+        mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+    }
+
+    private void switchFragmet(Fragment fragmentSwitchTo, String name){
         if(fragmentSwitchTo.isVisible() || fragmentSwitchTo == currentFragment){
             return;
         }
@@ -58,7 +92,7 @@ public class NavigationDrawerTest extends ActionBarActivity  {
         currentFragment.getView().bringToFront();
 
 
-        getSupportFragmentManager().beginTransaction()
+        getFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.anim_frag_slide_in,R.anim.anim_frag_slide_out)
                 .hide(currentFragment)
                 .show(fragmentSwitchTo)
@@ -90,19 +124,40 @@ public class NavigationDrawerTest extends ActionBarActivity  {
 
         mListView.setAdapter(mArrayAdapter);
     }
+    //-------------------------   OVERRIDE METHOD -----------------------------------------------------
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        Log.d(TAG, "onPostCreate");
+       // mActionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d(TAG, "onConfigurationChanged");
+        //mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG,"onCreateOptionsMenu");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_navigation_drawer_test, menu);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        Log.d(TAG,"onOptionsItemSelected");
+
+       if(mActionBarDrawerToggle.onOptionsItemSelected(item)){
+           return true;
+       }
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
