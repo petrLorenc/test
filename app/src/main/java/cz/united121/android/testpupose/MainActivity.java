@@ -22,10 +22,17 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cz.united121.android.testpupose.Helpers.ImageAdapterGridView;
+import cz.united121.android.testpupose.Objects.CustomSmall;
+import cz.united121.android.testpupose.Objects.HelperObject.MyString;
 
 
 public class MainActivity extends ActionBarActivity {
+    private static final String CUSTOM_SMALL = "CUSTOM_SMALL";
+
 
     private Button m_button1;
     private Button m_button2;
@@ -68,11 +75,37 @@ public class MainActivity extends ActionBarActivity {
 
         setupAnimationFromParametr(m_button2, m_button1, set_of_animation, alpha_out);
 
-
         setInterpolarToButton(m_with_interpolar,m_without_interpolar,R.anim.anim_fade_out_interpolator,R.anim.anim_fade_out);
 
         m_image_view_group.setAdapter(new ImageAdapterGridView(MainActivity.this,R.anim.anim_image_button));
         setImageViewGroupAnimation(m_image_view_group, R.anim.anim_image_button);
+    }
+
+    /**
+     * Only for testing purpose - this bungle will be read in BlankFragment
+     * @param bundle
+     */
+    private void populateBundleWithParcelable(Bundle bundle){
+        MyString myString1 = new MyString("a");
+        MyString myString2 = new MyString("b");
+        MyString myString3 = new MyString("c");
+        MyString myString4 = new MyString("d");
+
+        List<MyString> myStringList1 = new ArrayList<>();
+        myStringList1.add(myString1);
+        myStringList1.add(myString4);
+
+        List<MyString> myStringList2 = new ArrayList<>();
+        myStringList1.add(myString1);
+        myStringList1.add(myString2);
+        myStringList1.add(myString3);
+        myStringList1.add(myString4);
+
+        CustomSmall customSmall_1 = new CustomSmall(1,"First",42,myStringList1);
+        CustomSmall customSmall_2 = new CustomSmall(2,"Second",88,myStringList2);
+
+        bundle.putParcelable(CUSTOM_SMALL + "1",customSmall_1);
+        //bundle.putParcelable(CUSTOM_SMALL + "2",customSmall_2);
     }
 
     private void setImageViewGroupAnimation(final View view, final int animation_ID){
@@ -138,7 +171,10 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_drawer) {
+            Bundle b = new Bundle();
+            populateBundleWithParcelable(b);
             Intent toNavigationDrawer = new Intent(MainActivity.this,NavigationDrawerTest.class);
+            toNavigationDrawer.putExtras(b);
             startActivity(toNavigationDrawer);
             return true;
         }else if (id == R.id.action_fragment) {

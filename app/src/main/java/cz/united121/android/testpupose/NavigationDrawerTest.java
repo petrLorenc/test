@@ -20,10 +20,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import cz.united121.android.testpupose.Objects.CustomSmall;
+
 
 public class NavigationDrawerTest extends ActionBarActivity  {
 
     private static String TAG = NavigationDrawerTest.class.getName();
+    private static final String CUSTOM_SMALL = "CUSTOM_SMALL";
 
     private DrawerLayout mDrawerLayout;
     private ListView mListView;
@@ -58,6 +61,10 @@ public class NavigationDrawerTest extends ActionBarActivity  {
         currentFragment = blankFragment;
 
         //setActionBar();
+
+        Bundle bundle = getIntent().getExtras();
+        CustomSmall customSmall_1 = bundle.getParcelable(CUSTOM_SMALL + "1");
+        //CustomSmall customSmall_2 = bundle.getParcelable(CUSTOM_SMALL + "2");
     }
 
     private void setActionBar(){
