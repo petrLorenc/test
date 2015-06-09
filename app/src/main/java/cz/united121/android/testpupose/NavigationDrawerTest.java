@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class NavigationDrawerTest extends Activity  {
+public class NavigationDrawerTest extends ActionBarActivity  {
 
     private static String TAG = NavigationDrawerTest.class.getName();
 
