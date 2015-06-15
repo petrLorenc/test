@@ -154,7 +154,7 @@ public class NavigationDrawerTest extends ActionBarActivity  {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         Log.d(TAG, "onPostCreate");
-        mActionBarDrawerToggle.syncState();
+        mActionBarDrawerToggle.syncState(); // using for animation when is drawer menu opening
     }
 
     @Override
