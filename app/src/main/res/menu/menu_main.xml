@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_drawer" android:title="@string/action_navigationDrawer"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_fragment" android:title="@string/action_fragment"
+    <item android:id="@+id/action_broadcast" android:title="@string/action_broadcast"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
