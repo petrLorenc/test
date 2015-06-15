@@ -14,6 +14,7 @@
 
     <string name="action_bar_open">Open</string>
     <string name="action_bar_close">Close</string>
+    <string name="open_drawer_menu">I am open</string>
 
 
 </resources>

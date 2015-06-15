@@ -89,14 +89,14 @@ public class NavigationDrawerTest extends ActionBarActivity  {
                 /** Called when a drawer has settled in a completely closed state. */
                 public void onDrawerClosed(View view) {
                     super.onDrawerClosed(view);
-                    getSupportActionBar().setTitle("Otevreno");
-                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                    getSupportActionBar().setTitle(mActivityTitle);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu() - > onCreateOptionsMenu()
                 }
 
                 /** Called when a drawer has settled in a completely open state. */
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
-                    getSupportActionBar().setTitle(mActivityTitle);
+                    getSupportActionBar().setTitle(getString(R.string.open_drawer_menu));
                     invalidateOptionsMenu();
                 }
         };
@@ -154,14 +154,14 @@ public class NavigationDrawerTest extends ActionBarActivity  {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         Log.d(TAG, "onPostCreate");
-       // mActionBarDrawerToggle.syncState();
+        mActionBarDrawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d(TAG, "onConfigurationChanged");
-        //mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+        mActionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
