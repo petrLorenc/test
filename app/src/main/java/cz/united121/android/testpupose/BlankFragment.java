@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 // using android.support.v4.app.Fragment becasuse getSupportFragmentManager
-public class BlankFragment extends android.support.v4.app.Fragment {
+public class BlankFragment extends Fragment {
+    private static final String CUSTOM_SMALL = "CUSTOM_SMALL";
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
