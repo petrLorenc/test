@@ -25,6 +25,7 @@ import android.widget.ViewAnimator;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.united121.android.testpupose.Broadcast.BroadcastManaging;
 import cz.united121.android.testpupose.Helpers.ImageAdapterGridView;
 import cz.united121.android.testpupose.Objects.CustomSmall;
 import cz.united121.android.testpupose.Objects.HelperObject.MyString;
@@ -169,7 +170,6 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_drawer) {
             Bundle b = new Bundle();
             populateBundleWithParcelable(b);
@@ -177,9 +177,9 @@ public class MainActivity extends ActionBarActivity {
             toNavigationDrawer.putExtras(b);
             startActivity(toNavigationDrawer);
             return true;
-        }else if (id == R.id.action_fragment) {
-            FragmentManager fragmentManager = getFragmentManager();
-            Fragment fragment = (Fragment) fragmentManager.findFragmentById(R.id.fragment1);
+        }else if (id == R.id.action_broadcast) {
+            Intent toBroadcastSetter = new Intent(MainActivity.this,BroadcastManaging.class);
+            startActivity(toBroadcastSetter);
         }
 
         return super.onOptionsItemSelected(item);

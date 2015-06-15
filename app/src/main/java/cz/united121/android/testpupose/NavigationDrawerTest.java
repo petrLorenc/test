@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -99,6 +100,12 @@ public class NavigationDrawerTest extends ActionBarActivity  {
                     getSupportActionBar().setTitle(getString(R.string.open_drawer_menu));
                     invalidateOptionsMenu();
                 }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                Log.d(TAG,"onDrawerSlide (slideOffset) : " + slideOffset);
+            }
         };
 
         mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);

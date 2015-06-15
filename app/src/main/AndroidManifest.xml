@@ -25,6 +25,9 @@
             android:name=".NavigationDrawerTest"
             android:label="@string/title_activity_navigation_drawer_test" >
         </activity>
+        <activity
+            android:name=".Broadcast.BroadcastManaging">
+        </activity>
     </application>
 
 </manifest>
