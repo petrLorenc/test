@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
+
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -38,7 +39,9 @@ public class NavigationDrawerTest extends ActionBarActivity  {
 
     private Fragment currentFragment;
 
+    // for hamburger menu
     private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private String mActivityTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,10 @@ public class NavigationDrawerTest extends ActionBarActivity  {
                 .commit();
         currentFragment = blankFragment;
 
-        //setActionBar();
+
+        //for hamburger menu
+        setActionBar();
+
 
         Bundle bundle = getIntent().getExtras();
         CustomSmall customSmall_1 = bundle.getParcelable(CUSTOM_SMALL + "1");
@@ -68,6 +74,12 @@ public class NavigationDrawerTest extends ActionBarActivity  {
     }
 
     private void setActionBar(){
+
+        mActivityTitle = getTitle().toString();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         mActionBarDrawerToggle = new ActionBarDrawerToggle(
                 NavigationDrawerTest.this,
                 mDrawerLayout,
@@ -77,15 +89,19 @@ public class NavigationDrawerTest extends ActionBarActivity  {
                 /** Called when a drawer has settled in a completely closed state. */
                 public void onDrawerClosed(View view) {
                     super.onDrawerClosed(view);
+                    getSupportActionBar().setTitle("Otevreno");
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 }
 
                 /** Called when a drawer has settled in a completely open state. */
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
-
+                    getSupportActionBar().setTitle(mActivityTitle);
+                    invalidateOptionsMenu();
                 }
         };
 
+        mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
     }
