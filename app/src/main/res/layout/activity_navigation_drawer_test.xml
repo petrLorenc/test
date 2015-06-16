@@ -6,23 +6,37 @@
     android:layout_height="fill_parent">
 
     <!--For main Activity-->
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        tools:context=".NavigationDrawerTest">
-        <fragment
-            android:name="cz.united121.android.testpupose.BlankFragment"
-            android:id="@+id/fragment1"
+        android:layout_height="fill_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        </fragment>
-        <fragment
-            android:name="cz.united121.android.testpupose.BlankFragment2"
-            android:id="@+id/fragment2"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:gravity="top">
+        </android.support.v7.widget.Toolbar>
+
+        <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        </fragment>
-    </FrameLayout>
+            android:layout_height="fill_parent"
+            android:layout_below="@id/toolbar"
+            tools:context=".NavigationDrawerTest">
+            <fragment
+                android:name="cz.united121.android.testpupose.BlankFragment"
+                android:id="@+id/fragment1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            </fragment>
+            <fragment
+                android:name="cz.united121.android.testpupose.BlankFragment2"
+                android:id="@+id/fragment2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            </fragment>
+        </FrameLayout>
+    </RelativeLayout>
 
     <!--For main Menu-->
 
