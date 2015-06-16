@@ -75,9 +75,13 @@ public class NavigationDrawerTest extends ActionBarActivity  {
         setActionBar();
 
 
-        Bundle bundle = getIntent().getExtras();
-        CustomSmall customSmall_1 = bundle.getParcelable(CUSTOM_SMALL + "1");
-        //CustomSmall customSmall_2 = bundle.getParcelable(CUSTOM_SMALL + "2");
+        if(getIntent().hasExtra(CUSTOM_SMALL + "1")
+                //&& getIntent().hasExtra(CUSTOM_SMALL + "2")
+                ){
+            Bundle bundle = getIntent().getExtras();
+            CustomSmall customSmall_1 = bundle.getParcelable(CUSTOM_SMALL + "1");
+            //CustomSmall customSmall_2 = bundle.getParcelable(CUSTOM_SMALL + "2");
+        }
     }
 
     private void setActionBar(){

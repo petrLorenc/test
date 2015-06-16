@@ -3,8 +3,11 @@ package cz.united121.android.testpupose.Broadcast;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+
+import cz.united121.android.testpupose.NavigationDrawerTest;
 
 /**
  * Original project name : TestPupose
@@ -15,7 +18,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG,"onReceive");
+        Log.d(TAG, "onReceive");
+
+        Intent i = new Intent(context, NavigationDrawerTest.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
     }
 
     public MyBroadcastReceiver() {
