@@ -1,7 +1,5 @@
 package cz.united121.android.testpupose;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,24 +7,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.united121.android.testpupose.Broadcast.BroadcastManaging;
+import cz.united121.android.testpupose.Broadcast.BroadcastManagingActivity;
 import cz.united121.android.testpupose.Helpers.ImageAdapterGridView;
 import cz.united121.android.testpupose.Objects.CustomSmall;
 import cz.united121.android.testpupose.Objects.HelperObject.MyString;
@@ -184,7 +178,7 @@ public class MainActivity extends ActionBarActivity {
             startActivity(toNavigationDrawer);
             return true;
         }else if (id == R.id.action_broadcast) {
-            Intent toBroadcastSetter = new Intent(MainActivity.this,BroadcastManaging.class);
+            Intent toBroadcastSetter = new Intent(MainActivity.this,BroadcastManagingActivity.class);
             startActivity(toBroadcastSetter);
         }
 

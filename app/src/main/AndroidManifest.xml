@@ -26,8 +26,20 @@
             android:label="@string/title_activity_navigation_drawer_test" >
         </activity>
         <activity
-            android:name=".Broadcast.BroadcastManaging">
+            android:name=".Broadcast.BroadcastManagingActivity">
         </activity>
+
+        <!-- Service -->
+        <service android:name=".Broadcast.MyService" />
+
+        <!-- Broadcast Receiver -->
+
+        <receiver android:name=".Broadcast.MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="cz.united121.android.testpupose.CUSTOM_BRODCAST"/>;
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
