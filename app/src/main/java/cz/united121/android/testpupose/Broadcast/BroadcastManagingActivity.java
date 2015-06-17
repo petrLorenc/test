@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.parse.Parse;
+
 import cz.united121.android.testpupose.R;
 
 
@@ -23,10 +25,17 @@ public class BroadcastManagingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast_manager);
-        Log.d(TAG,"onCreate");
+        Log.d(TAG, "onCreate");
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("TOOLBAR");
+
+
+        //For Parse---------
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "dum1eTjnkhNJmgptOPaQVgzBRAVoTdwLhAm6vj6t", "ZYVqef9IqHLLI2TtebwGW2b61ZkBGfnuXu8JM63J");
+
     }
 
     public void startService(View view){

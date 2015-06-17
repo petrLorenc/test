@@ -3,6 +3,9 @@
     package="cz.united121.android.testpupose" >
 
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="21"/>
